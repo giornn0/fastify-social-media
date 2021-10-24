@@ -15,10 +15,10 @@ const fastify =  require('fastify')(
 // })
 
 //Functional plugins
-// fastify.register(require('./plugins/connection'));
-// fastify.register(require('./plugins/jwt-plugin'));
-// //Authentication plugin
-// fastify.register(require('./plugins/auth'));
+fastify.register(require('./plugins/connection'));
+fastify.register(require('./plugins/jwt-plugin'));
+//Authentication plugin
+fastify.register(require('./plugins/auth'));
 //Router
 fastify.register(require('./routes/router'));
 //WS   
@@ -27,7 +27,7 @@ fastify.register(require('./plugins/web-socket'))
 
 //Serving up function!
 const start = async()=>{    
-    await fastify.listen(process.env.PORT || 5000,'localhost',(err,address)=>{
+    await fastify.listen(process.env.PORT || 5000,'0.0.0.0',(err,address)=>{
         if(err){
             fastify.log.error(err)
             process.exit(1)
@@ -38,13 +38,13 @@ const start = async()=>{
 //One for each cpu available in the system or put a number
 // const numCPUs = cpus().length;
 
-// if(cluster.isPrimary){
-//     for(let i = 0; i<; i++){
-//         cluster.fork()
-//   }
-//   cluster.on('exit',(worker,code,signal)=>{
-    // fastify.info.log(`Worker ${worker.process.pid} died`)
-// })
-// }else{
+if(cluster.isPrimary){
+    for(let i = 0; i<4; i++){
+        cluster.fork()
+  }
+  cluster.on('exit',(worker,code,signal)=>{
+    fastify.info.log(`Worker ${worker.process.pid} died`)
+})
+}else{
     start().catch(err=>{fastify.log.error(err);process.exit(1)})
-// }
+}

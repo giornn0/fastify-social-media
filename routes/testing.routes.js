@@ -1,5 +1,5 @@
 module.exports = async(fastify,options)=>{
-    // const collection =  fastify.mongo.db.collection('messages')
+    const collection =  fastify.mongo.db.collection('messages')
     fastify.route({
         url:'/hello',
         method:'GET',
@@ -16,7 +16,7 @@ module.exports = async(fastify,options)=>{
             }
         },
         handler:async (req,rep)=>{
-            // const messages = await collection.find()
+            const messages = await collection.find()
             // fastify.log.info(message, messages)
             return {data:messages}
         }
