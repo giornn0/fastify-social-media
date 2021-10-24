@@ -21,7 +21,7 @@ fastify.register(require('./routes/router'));
 fastify.register(require('./plugins/web-socket'))
 
 
-//Serving up!
+//Serving up function!
 const start = async()=>{    
     await fastify.listen(process.env.PORT | 5000,'localhost',(err,address)=>{
         if(err){
@@ -35,7 +35,7 @@ const start = async()=>{
 // const numCPUs = cpus().length;
 
 if(cluster.isPrimary){
-    for(let i = 0; i<1; i++){
+    for(let i = 0; i<4; i++){
         cluster.fork()
   }
   cluster.on('exit',(worker,code,signal)=>{
