@@ -17,7 +17,6 @@ module.exports = async(fastify,options)=>{
         },
         handler:async (req,rep)=>{
             const messages = await collection.find()
-            console.log(error)
             // fastify.log.info(message, messages)
             return {data:messages}
         }
