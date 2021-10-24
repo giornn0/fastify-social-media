@@ -10,6 +10,10 @@ const fastify =  require('fastify')(
     }
 )
 
+// fastify.register(require('fastify-cors'),{
+
+// })
+
 //Functional plugins
 fastify.register(require('./plugins/connection'));
 fastify.register(require('./plugins/jwt-plugin'));
@@ -34,13 +38,13 @@ const start = async()=>{
 //One for each cpu available in the system or put a number
 // const numCPUs = cpus().length;
 
-if(cluster.isPrimary){
-    for(let i = 0; i<4; i++){
-        cluster.fork()
-  }
-  cluster.on('exit',(worker,code,signal)=>{
+// if(cluster.isPrimary){
+//     for(let i = 0; i<; i++){
+//         cluster.fork()
+//   }
+//   cluster.on('exit',(worker,code,signal)=>{
     fastify.info.log(`Worker ${worker.process.pid} died`)
-})
-}else{
-    start().catch(err=>{fastify.log.error(err);process.exit(1)})
-}
+// })
+// }else{
+//     start().catch(err=>{fastify.log.error(err);process.exit(1)})
+// }
