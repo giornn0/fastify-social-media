@@ -43,8 +43,8 @@ const start = async()=>{
 //         cluster.fork()
 //   }
 //   cluster.on('exit',(worker,code,signal)=>{
-    fastify.info.log(`Worker ${worker.process.pid} died`)
+    // fastify.info.log(`Worker ${worker.process.pid} died`)
 // })
 // }else{
-//     start().catch(err=>{fastify.log.error(err);process.exit(1)})
+    start().catch(err=>{fastify.log.error(err);process.exit(1)})
 // }
