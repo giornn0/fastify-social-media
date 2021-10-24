@@ -15,10 +15,10 @@ const fastify =  require('fastify')(
 // })
 
 //Functional plugins
-fastify.register(require('./plugins/connection'));
-fastify.register(require('./plugins/jwt-plugin'));
-//Authentication plugin
-fastify.register(require('./plugins/auth'));
+// fastify.register(require('./plugins/connection'));
+// fastify.register(require('./plugins/jwt-plugin'));
+// //Authentication plugin
+// fastify.register(require('./plugins/auth'));
 //Router
 fastify.register(require('./routes/router'));
 //WS   
