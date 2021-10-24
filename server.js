@@ -27,7 +27,7 @@ fastify.register(require('./plugins/web-socket'))
 
 //Serving up function!
 const start = async()=>{    
-    await fastify.listen(process.env.PORT | 5000,'localhost',(err,address)=>{
+    await fastify.listen(process.env.PORT || 5000,'localhost',(err,address)=>{
         if(err){
             fastify.log.error(err)
             process.exit(1)
